@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -7,165 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            font-family: 'Roboto Mono', monospace;
-            color: white;
-            position: relative;
-        }
-        /* Chuva de dados melhorada */
-        .data-stream {
-            position: absolute;
-            font-size: 10px;
-            color: rgba(0, 255, 200, 0.2);
-            font-family: 'Orbitron', sans-serif;
-            pointer-events: none;
-            white-space: nowrap;
-            animation: fall linear infinite;
-            text-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
-        }
-        @keyframes fall {
-            from { transform: translateY(-100vh); opacity: 1; }
-            to { transform: translateY(100vh); opacity: 0; }
-        }
-        #main-container {
-            text-align: center;
-            transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            z-index: 10;
-        }
-        .loader-circle {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 50px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            animation: rotate linear infinite;
-        }
-        .ring:nth-child(1) {
-            width: 100%; height: 100%;
-            border-top-color: #00ffff;
-            border-left-color: #00ffff;
-            box-shadow: 0 0 30px #00ffff;
-        }
-        .ring:nth-child(2) {
-            width: 75%; height: 75%;
-            border-bottom-color: #9d50bb;
-            border-right-color: #9d50bb;
-            animation-duration: 4s;
-            animation-direction: reverse;
-            box-shadow: 0 0 25px #9d50bb;
-        }
-        .core {
-            width: 12px;
-            height: 12px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 30px #fff, 0 0 60px #00ffff;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 30px #fff, 0 0 60px #00ffff; }
-            50% { box-shadow: 0 0 40px #fff, 0 0 80px #00ffff; }
-        }
-        .btn-connect {
-            padding: 16px 50px;
-            background: transparent;
-            border: 2px solid #00ffff;
-            color: #00ffff;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.4s;
-            font-size: 0.9rem;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-        }
-        .btn-connect:hover {
-            background: #00ffff;
-            color: #000;
-            box-shadow: 0 0 40px #00ffff;
-            transform: scale(1.05);
-        }
-        /* Dashboard */
-        #dashboard {
-            display: none;
-            text-align: center;
-            width: 90%;
-            max-width: 600px;
-            z-index: 10;
-            animation: fadeIn 1.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 500;
-            letter-spacing: 20px;
-            margin: 0;
-            font-size: 2.2rem;
-            text-shadow: 0 0 20px #00ffff;
-        }
-        .tagline {
-            letter-spacing: 8px;
-            font-size: 0.7rem;
-            color: #00ffff;
-            margin: 20px 0 50px;
-            font-family: 'Orbitron', sans-serif;
-        }
-        .status-box {
-            border-top: 1px solid rgba(0, 255, 255, 0.2);
-            padding-top: 40px;
-        }
-        .backup-container {
-            margin-top: 50px;
-            text-align: left;
-        }
-        .progress-bar-bg {
-            width: 100%;
-            height: 6px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 3px;
-            overflow: hidden;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-        #progress-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #00ffff, #9d50bb, #ff00aa);
-            border-radius: 3px;
-            box-shadow: 0 0 20px #00ffff;
-            transition: width 0.3s ease;
-        }
-        .log-text {
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.65rem;
-            color: #00ffaa;
-            height: 30px;
-            margin-top: 15px;
-            text-shadow: 0 0 10px #00ffaa;
-        }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Sons royalty-free otimizados -->
+    <audio id="ambient-sound" loop preload="none">
+        <source src="https://cdn.pixabay.com/download/audio/2023/05/19/audio_8c6d9e0c65.mp3?filename=cyberpunk-ambient-11892.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="activation-sound" preload="none">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-hologram-activation-2630.mp3" type="audio/mpeg">
+    </audio>
 </head>
 <body>
     <!-- Chuva de dados -->
@@ -187,6 +37,7 @@
         }
         setInterval(createData, 100);
     </script>
+
     <div id="main-container">
         <div class="loader-circle">
             <div class="ring"></div>
@@ -195,14 +46,15 @@
         </div>
         <button class="btn-connect" onclick="activateSystem()">INICIAR LINK</button>
     </div>
+
     <div id="dashboard">
         <h1>ETERNIDADE LINK</h1>
         <div class="tagline">INTERFACE NEURAL IMORTAL</div>
-      
+     
         <div class="status-box">
             <div style="font-size: 0.8rem; letter-spacing: 4px; color: #00ffff; margin-bottom: 8px;">CONEXÃO ESTABELECIDA</div>
             <div style="font-size: 0.9rem; color: #aaa;">Sincronizado com: <span style="color: #fff; text-shadow: 0 0 10px #fff;">Edy Carlos Dias Laureano</span></div>
-          
+         
             <div class="backup-container">
                 <div style="display: flex; justify-content: space-between; font-size: 0.7rem; letter-spacing: 3px; color: #00ffff;">
                     <span>BACKUP DE CONSCIÊNCIA</span>
@@ -218,8 +70,32 @@
             </div>
         </div>
     </div>
+
     <script>
+        // Áudio mobile-friendly
+        const ambient = document.getElementById('ambient-sound');
+        const activation = document.getElementById('activation-sound');
+        let audioUnlocked = false;
+
+        function unlockAudio() {
+            if (audioUnlocked) return;
+            audioUnlocked = true;
+            ambient.volume = 0.25;
+            ambient.play().catch(() => {});
+            document.body.removeEventListener('click', unlockAudio);
+            document.body.removeEventListener('touchstart', unlockAudio);
+        }
+
+        document.body.addEventListener('click', unlockAudio);
+        document.body.addEventListener('touchstart', unlockAudio);
+
         function activateSystem() {
+            if (audioUnlocked) {
+                activation.volume = 0.7;
+                activation.currentTime = 0;
+                activation.play().catch(() => {});
+            }
+
             const main = document.getElementById('main-container');
             main.style.opacity = "0";
             main.style.transform = "scale(1.8) translateY(-50px)";
@@ -229,6 +105,7 @@
                 startBackup();
             }, 1000);
         }
+
         function startBackup() {
             let p = 0;
             const bar = document.getElementById('progress-fill');
@@ -258,9 +135,8 @@
                     else if (p < 75) log.innerText = messages[2];
                     else log.innerText = messages[3];
                 }
-                        
-    </style>
-</head>
-<body>
-
-
+            }, 150);
+        }
+    </script>
+</body>
+</html>
