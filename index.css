@@ -1,1 +1,18 @@
-﻿/* Eternidade Link Style */
+﻿@keyframes matrix-glow {
+  0% { text-shadow: 0 0 5px #00f2ff; opacity: 0.8; }
+  50% { text-shadow: 0 0 20px #00f2ff, 0 0 30px #00f2ff; opacity: 1; }
+  100% { text-shadow: 0 0 5px #00f2ff; opacity: 0.8; }
+}
+
+.matrix-canvas {
+  filter: contrast(120%) brightness(1.2);
+  background: radial-gradient(circle at center, #001a1a 0%, #000000 100%);
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
