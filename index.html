@@ -23,22 +23,6 @@
     }
     .font-orbitron { font-family: 'Orbitron', sans-serif; }
     
-    /* Data Rain Background */
-    .data-stream {
-      position: fixed;
-      top: -20px;
-      color: var(--neon-cyan);
-      font-size: 0.7rem;
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-      white-space: nowrap;
-      text-shadow: 0 0 5px var(--neon-cyan);
-    }
-    @keyframes drop {
-      to { transform: translateY(110vh); }
-    }
-
     /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: #000; }
@@ -59,10 +43,10 @@
     }
   }
   </script>
-
+<link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-black">
   <div id="root"></div>
-<script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>
