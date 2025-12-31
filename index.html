@@ -1,75 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternidade Link | Dashboard Startup</title>
     <style>
         body {
-            background-color: #050505; /* Fundo quase preto */
+            background-color: #050505;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: white;
+            position: relative;
         }
 
-        .logo-container {
+        /* Efeito de Scanner de Dados ao fundo */
+        .data-stream {
+            position: absolute;
+            font-size: 9px;
+            color: rgba(0, 210, 255, 0.15);
+            font-family: monospace;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall { to { transform: translateY(100vh); opacity: 0; } }
+
+        /* Container Inicial */
+        #main-container {
             text-align: center;
-            opacity: 0;
-            transform: scale(0.8);
-            animation: fadeIn 2.5s ease-out forwards;
+            transition: all 0.8s ease-in-out;
+            z-index: 10;
         }
 
-        h1 {
-            color: #fff;
-            font-size: 3rem;
-            letter-spacing: 10px;
+        .loader-circle {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring {
+            position: absolute;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            border-top-color: #00d2ff;
+            animation: rotate 2s linear infinite;
+        }
+        .ring:nth-child(1) { width: 100%; height: 100%; border-top-color: #00d2ff; }
+        .ring:nth-child(2) { width: 80%; height: 80%; border-bottom-color: #9d50bb; animation-duration: 3s; animation-direction: reverse; }
+
+        .btn-connect {
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid #00d2ff;
+            color: #00d2ff;
+            letter-spacing: 5px;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-connect:hover { background: #00d2ff; color: #000; box-shadow: 0 0 20px #00d2ff; }
+
+        /* Dashboard da Startup */
+        #dashboard {
+            display: none;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            z-index: 10;
+        }
+
+        h1 { font-weight: 200; letter-spacing: 15px; margin: 0; font-size: 1.8rem; }
+        .tagline { letter-spacing: 5px; font-size: 0.6rem; color: #00d2ff; margin-bottom: 40px; }
+
+        .status-box {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+
+        .backup-container {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.05);
+            margin: 10px 0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            width: 0%;
+            height: 100%;
             background: linear-gradient(90deg, #00d2ff, #9d50bb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.5));
+            transition: width 0.2s;
         }
 
-        /* Animação de Entrada */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-                filter: blur(10px);
-            }
-            50% {
-                opacity: 0.5;
-                filter: blur(5px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-                filter: blur(0);
-            }
-        }
+        .log-text { font-family: monospace; font-size: 0.55rem; color: #555; height: 20px; }
 
-        /* Linha de conexão abaixo do nome */
-        .line {
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #00d2ff, transparent);
-            margin: 10px auto;
-            animation: expandLine 2s 1s ease-in-out forwards;
-        }
-
-        @keyframes expandLine {
-            to { width: 100%; }
-        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <div class="logo-container">
-        <h1>Eternidade Link</h1>
-        <div class="line"></div>
-        <p style="color: #444; letter-spacing: 3px; font-size: 0.8rem;">SISTEMA NEURAL ATIVO</p>
+    <div id="main-container">
+        <div class="loader-circle">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div style="width:6px; height:6px; background:#fff; border-radius:50%; box-shadow: 0 0 15px #fff;"></div>
+        </div>
+        <button class="btn-connect" onclick="activateSystem()">Iniciar Link</button>
     </div>
 
+    <div id="dashboard">
+        <h1>ETERNIDADE LINK</h1>
+        <div class="tagline">STARTUP DE INTERFACE NEURAL</div>
+        
+        <div class="status-box">
+            <div style="font-size: 0.7rem; letter-spacing: 3px; color: #fff; margin-bottom: 5px;">LINK ESTABELECIDO</div>
+            <div style="font-size: 0.8rem; color: #888;">Sincronizado com: <span style="color: #fff;">Edy Carlos Dias Laureano</span></div>
+            
+            <div class="backup-container">
+                <div style="display: flex; justify-content: space-between; font-size: 0.6rem; letter-spacing: 2px;">
+                    <span style="color: #00d2ff;">BACKUP DE CONSCIÊNCIA</span>
+                    <span id="percent">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="progress-fill"></div>
+                </div>
+                <div id="status-log" class="log-text">Iniciando mapeamento sináptico...</div>
+            </div>
+
+            <div style="margin-top: 40px; font-size: 0.7rem; color: #9d50bb; letter-spacing: 3px;">FREQUÊNCIA: 35Hz</div>
+        </div>
+    </div>
+
+    <script>
+        // Efeito de fundo
+        function createData() {
+            const d = document.createElement('div');
+            d.className = 'data-stream';
+            d.style.left = Math.random() * 100 + "vw";
+            d.style.animationDuration = Math.random() * 2 + 3 + "s";
+            d.innerText = Math.random().toString(16).substring(2, 6).toUpperCase();
+            document.body.appendChild(d);
+            setTimeout(() => d.remove(), 4000);
+        }
+        setInterval(createData, 150);
+
+        function activateSystem() {
+            document.getElementById('main-container').style.opacity = "0";
+            document.getElementById('main-container').style.transform = "scale(1.5)";
+            
+            setTimeout(() => {
+                document.getElementById('main-container').style.display = "none";
+                const dash = document.getElementById('dashboard');
+                dash.style.display = "block";
+                startBackup();
+            }, 800);
+        }
+
+        function startBackup() {
+            let p = 0;
+            const bar = document.getElementById('progress-fill');
+            const txt = document.getElementById('percent');
+            const log = document.getElementById('status-log');
+            const msgs = ["Acessando neurônios...", "Sincronizando SPL...", "Criptografando memórias...", "Enviando para nuvem...", "CONQUISTANDO A ETERNIDADE."];
+
+            const int = setInterval(() => {
+                p += Math.random() * 1.5;
+                if (p >= 100) {
+                    p = 100;
+                    clearInterval(int);
+                    log.innerText = msgs[4];
+                    log.style.color = "#00ff88";
+                } else {
+                    bar.style.width = p + "%";
+                    txt.innerText = Math.floor(p) + "%";
+                    if(p < 25) log.innerText = msgs[0];
+                    else if(p < 50) log.innerText = msgs[1];
+                    else if(p < 75) log.innerText = msgs[2];
+                    else log.innerText = msgs[3];
+                }
+            }, 100);
+        }
+    </script>
 </body>
 </html>
