@@ -1,137 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Eternidade Link | Neural Core v12.0</title>
     <style>
-        :root { --primary: #00d2ff; --secondary: #9d50bb; --bg: #050505; }
-        
-        body { background-color: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; overflow: hidden; height: 100vh; }
-
-        /* DASHBOARD PURIFICADO */
-        .core-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr 300px;
-            grid-template-rows: auto 1fr 200px;
-            gap: 15px;
-            padding: 20px;
-            height: 95vh;
+        body {
+            background-color: #050505; /* Fundo quase preto */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        /* BIBLIOTECA DE TEMPLATES (O QUE TU USAS NOS LOGS) */
-        .template-bar { 
-            grid-column: 1 / 4; display: flex; gap: 10px; 
-            padding-bottom: 10px; border-bottom: 1px solid #222; 
+        .logo-container {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeIn 2.5s ease-out forwards;
         }
-        .tpl-btn { 
-            background: transparent; border: 1px solid #333; color: #666; 
-            padding: 5px 15px; font-size: 0.6rem; cursor: pointer; transition: 0.3s;
+
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00d2ff, #9d50bb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.5));
         }
-        .tpl-btn:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* EXPLORADOR E RECURSOS (ESQUERDA) */
-        .side-left { background: rgba(255,255,255,0.02); border: 1px solid #111; padding: 15px; grid-row: 2 / 4; }
-        .stat-item { margin-bottom: 15px; font-size: 0.6rem; color: #444; }
-        .bar-bg { width: 100%; height: 2px; background: #111; margin-top: 5px; }
-        .bar-fill { height: 100%; background: var(--primary); width: 40%; transition: 0.3s; }
-
-        /* EDITOR LIVE (ESTILO LNCC - O QUE TU GOSTASTE) */
-        .editor-center { grid-row: 2; display: flex; flex-direction: column; gap: 10px; }
-        textarea { 
-            flex: 1; background: #000; border: 1px solid #111; color: var(--primary);
-            padding: 15px; font-family: 'Consolas', monospace; font-size: 0.85rem;
-            outline: none; resize: none;
+        /* Animação de Entrada */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+                filter: blur(10px);
+            }
+            50% {
+                opacity: 0.5;
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
         }
-        #preview-box { flex: 1; background: #fff; border: 1px solid #111; border-radius: 4px; }
 
-        /* LOGS E AUDITORIA (DIREITA) */
-        .side-right { background: rgba(0,0,0,0.5); border: 1px solid #111; padding: 15px; grid-row: 2 / 4; overflow-y: auto; }
-        .log-entry { font-family: monospace; font-size: 0.6rem; color: #444; margin-bottom: 8px; border-bottom: 1px solid #0a0a0a; padding-bottom: 4px; }
+        /* Linha de conexão abaixo do nome */
+        .line {
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #00d2ff, transparent);
+            margin: 10px auto;
+            animation: expandLine 2s 1s ease-in-out forwards;
+        }
 
-        /* MENSAGENS (BAIXO) */
-        .message-area { grid-column: 2; grid-row: 3; background: rgba(0,0,0,0.3); border: 1px solid #111; padding: 10px; display: flex; flex-direction: column; }
-        #chat-box { flex: 1; overflow-y: auto; font-size: 0.7rem; color: var(--secondary); margin-bottom: 5px; }
+        @keyframes expandLine {
+            to { width: 100%; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="core-layout">
-        
-        <div class="template-bar">
-            <span style="color: #444; font-size: 0.6rem; align-self: center; margin-right: 10px;">BIBLIOTECA:</span>
-            <button class="tpl-btn" onclick="loadTemplate('matrix')">EFEITO MATRIX</button>
-            <button class="tpl-btn" onclick="loadTemplate('api')">MONITOR DE API</button>
-            <button class="tpl-btn" onclick="loadTemplate('grafico')">GRÁFICO NEURAL</button>
-            <button class="tpl-btn" onclick="loadTemplate('animacao')">ANIMAÇÃO GSAP</button>
-        </div>
-
-        <aside class="side-left">
-            <div style="font-size: 0.7rem; font-weight: bold; color: #fff; margin-bottom: 20px;">DIRETOR: EDY CARLOS</div>
-            <div class="stat-item">CPU CORE<div class="bar-bg"><div class="bar-fill" id="cpu-bar"></div></div></div>
-            <div class="stat-item">MEM LINKS<div class="bar-bg"><div class="bar-fill" style="background:var(--secondary); width:65%;"></div></div></div>
-            <p style="color:#222; font-size:0.5rem; margin-top:50px;">PROJETO: ETERNIDADE LINK</p>
-        </aside>
-
-        <main class="editor-center">
-            <textarea id="editor" oninput="liveRender()" placeholder="// O código inserido aqui será renderizado abaixo instantaneamente..."></textarea>
-            <div id="preview-box">
-                <iframe id="live-iframe" style="width:100%; height:100%; border:none;"></iframe>
-            </div>
-        </main>
-
-        <aside class="side-right">
-            <p style="color: #888; font-size: 0.6rem; letter-spacing: 2px; border-bottom: 1px solid #222; padding-bottom: 5px;">AUDITORIA_LIVE</p>
-            <div id="log-container"></div>
-        </aside>
-
-        <div class="message-area">
-            <div id="chat-box"></div>
-            <input type="text" id="chat-in" style="background:transparent; border:none; color:#fff; font-size:0.7rem; outline:none;" placeholder="Enviar comando..." onkeypress="handleChat(event)">
-        </div>
-
+    <div class="logo-container">
+        <h1>Eternidade Link</h1>
+        <div class="line"></div>
+        <p style="color: #444; letter-spacing: 3px; font-size: 0.8rem;">SISTEMA NEURAL ATIVO</p>
     </div>
 
-    <script>
-        function liveRender() {
-            const code = document.getElementById('editor').value;
-            const iframe = document.getElementById('live-iframe').contentWindow.document;
-            iframe.open();
-            iframe.write(code);
-            iframe.close();
-            if(code.length % 30 === 0) registerLog("Sincronização Live Preview realizada.");
-        }
-
-        function loadTemplate(type) {
-            const templates = {
-                'matrix': '<canvas id="c"></canvas>\n<script>\nconst c = document.getElementById("c"); const ctx = c.getContext("2d");\nc.height = window.innerHeight; c.width = window.innerWidth;\nconst m = "01"; const fontSize = 10; const columns = c.width/fontSize; const drops = [];\nfor(let x=0; x<columns; x++) drops[x] = 1;\nfunction draw() { ctx.fillStyle = "rgba(0,0,0,0.05)"; ctx.fillRect(0,0,c.width,c.height); ctx.fillStyle = "#0F0";\nfor(let i=0; i<drops.length; i++) { const text = m[Math.floor(Math.random()*m.length)]; ctx.fillText(text, i*fontSize, drops[i]*fontSize);\nif(drops[i]*fontSize > c.height && Math.random() > 0.975) drops[i] = 0; drops[i]++; } }\nsetInterval(draw, 33);\n<\/script>',
-                'api': '<div id="data" style="font-family:sans-serif; padding:20px;">Buscando Bitcoin...</div>\n<script>\nfetch("https://api.coindesk.com/v1/bpi/currentprice.json").then(r=>r.json()).then(d=>{\ndocument.getElementById("data").innerHTML = "<b>BTC:</b> $" + d.bpi.USD.rate;\n});\n<\/script>',
-                'grafico': '<canvas id="myChart"></canvas>\n<script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>\n<script>\nnew Chart(document.getElementById("myChart"), { type: "bar", data: { labels: ["A", "B", "C"], datasets: [{ label: "Neural", data: [10, 20, 15], backgroundColor: "#00d2ff" }] } });\n<\/script>',
-                'animacao': '<h1 id="t" style="font-family:sans-serif; color:purple;">ETERNIDADE</h1>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"><\/script>\n<script>\ngsap.to("#t", {duration: 1, x: 50, repeat: -1, yoyo: true});\n<\/script>'
-            };
-            document.getElementById('editor').value = templates[type];
-            liveRender();
-            registerLog(`Template carregado: ${type.toUpperCase()}`);
-        }
-
-        function registerLog(action) {
-            const container = document.getElementById('log-container');
-            const time = new Date().toLocaleTimeString();
-            container.innerHTML = `<div class="log-entry">[${time}] ${action}</div>` + container.innerHTML;
-        }
-
-        function handleChat(e) {
-            if(e.key === 'Enter') {
-                const box = document.getElementById('chat-box');
-                box.innerHTML += `<div>[EDY]: ${e.target.value}</div>`;
-                box.scrollTop = box.scrollHeight;
-                e.target.value = "";
-            }
-        }
-
-        window.onload = () => {
-            registerLog("Interface purificada v12.0 ativa.");
-            loadTemplate('matrix');
-        };
-    </script>
 </body>
 </html>
