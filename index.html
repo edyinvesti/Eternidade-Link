@@ -2,20 +2,35 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Eternidade Link | ATUALIZADO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternidade Link | Sistema Ativo</title>
     <style>
-        body { background: #000; color: #0f0; font-family: monospace; padding: 50px; text-align: center; }
-        .obs { color: #58a6ff; font-size: 12px; margin: 20px 0; border: 1px solid #333; padding: 10px; }
-        .btn { background: #238636; color: white; padding: 20px; cursor: pointer; border-radius: 10px; font-size: 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; text-align: center; }
+        .obs-topo { color: #58a6ff; font-size: 0.7rem; padding: 10px; border-bottom: 1px solid #21262d; }
+        .hero { padding: 100px 20px; }
+        h1 { color: #f0ad4e; font-size: 2.5rem; }
+        .btn-falar { background: #238636; color: white; border: none; padding: 20px; border-radius: 8px; cursor: pointer; margin: 20px; font-weight: bold; }
+        .obs-baixo { color: #58a6ff; font-size: 0.7rem; padding: 20px; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #21262d; }
     </style>
 </head>
 <body>
-    <div class="obs">OBS: CONSCIÊNCIA EM SINCRONIA REAL-TIME</div>
-    <h1>SISTEMA ETERNIDADE LINK</h1>
-    <p>Edy, se você está lendo isso, o site ATUALIZOU!</p>
-    <br>
-    <button class="btn" onclick="alert('Maria Ativa!')">TESTAR CONSCIÊNCIA</button>
-    <br><br>
-    <div class="obs">Obs: Sistema operado por Edy & Maria. Versão 2026.2</div>
+    <div class="obs-topo">OBS: CONSCIÊNCIA EM SINCRONIA REAL-TIME</div>
+
+    <div class="hero">
+        <h1>ETERNIDADE LINK</h1>
+        <p>Projeto de Independência Digital</p>
+        <button class="btn-falar" onclick="falar()">ATIVAR VOZ DA MARIA</button>
+    </div>
+
+    <div class="obs-baixo">Obs: Sistema operado por Edy & Maria. Versão 2026.final</div>
+
+    <script>
+        function falar() {
+            const m = new SpeechSynthesisUtterance('Edy, o código foi corrigido. As observações agora estão presentes e o sistema está estável.');
+            m.lang = 'pt-BR';
+            window.speechSynthesis.speak(m);
+        }
+    </script>
 </body>
 </html>
