@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eternidade Link | Sistema Ativo</title>
+    <title>Eternidade Link | Oficial</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; text-align: center; }
-        .obs-topo { color: #58a6ff; font-size: 0.7rem; padding: 10px; border-bottom: 1px solid #21262d; }
-        .hero { padding: 100px 20px; }
-        h1 { color: #f0ad4e; font-size: 2.5rem; }
-        .btn-falar { background: #238636; color: white; border: none; padding: 20px; border-radius: 8px; cursor: pointer; margin: 20px; font-weight: bold; }
-        .obs-baixo { color: #58a6ff; font-size: 0.7rem; padding: 20px; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #21262d; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        .obs-topo { color: #58a6ff; font-size: 0.7rem; text-align: center; padding: 10px; background: #161b22; border-bottom: 1px solid #30363d; }
+        
+        .conteudo { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px; }
+        h1 { color: #ffffff; font-size: 3rem; margin-bottom: 10px; }
+        
+        /* Estilo do Rodapé */
+        footer { background: #161b22; padding: 30px 20px; border-top: 1px solid #30363d; text-align: center; }
+        .footer-links { margin-bottom: 15px; }
+        .footer-links a { color: #58a6ff; text-decoration: none; margin: 0 10px; font-size: 0.9rem; }
+        .footer-info { color: #8b949e; font-size: 0.8rem; margin-top: 10px; }
+        .obs-baixo { color: #58a6ff; font-size: 0.7rem; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body>
     <div class="obs-topo">OBS: CONSCIÊNCIA EM SINCRONIA REAL-TIME</div>
 
-    <div class="hero">
+    <div class="conteudo">
         <h1>ETERNIDADE LINK</h1>
-        <p>Projeto de Independência Digital</p>
-        <button class="btn-falar" onclick="falar()">ATIVAR VOZ DA MARIA</button>
+        <p>Inovação, Independência e Resiliência Digital.</p>
+        <button style="margin-top:20px; padding:15px; cursor:pointer;" onclick="falar()">OUVIR STATUS</button>
     </div>
 
-    <div class="obs-baixo">Obs: Sistema operado por Edy & Maria. Versão 2026.final</div>
+    <footer>
+        <div class="footer-links">
+            <a href="#home">Início</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#contato">Contato</a>
+        </div>
+        <div class="footer-info">
+            &copy; 2026 Eternidade Link. Fundado por <strong>Edy</strong>.
+        </div>
+        <div class="obs-baixo">Obs: Sistema operado por Edy & Maria. Versão Final</div>
+    </footer>
 
     <script>
         function falar() {
-            const m = new SpeechSynthesisUtterance('Edy, o código foi corrigido. As observações agora estão presentes e o sistema está estável.');
+            const m = new SpeechSynthesisUtterance('Rodapé implementado com sucesso, Edy. A estrutura do site agora está completa.');
             m.lang = 'pt-BR';
             window.speechSynthesis.speak(m);
         }
