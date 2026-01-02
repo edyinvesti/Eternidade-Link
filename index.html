@@ -2,53 +2,20 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eternidade Link | Oficial</title>
+    <title>Eternidade Link | ATUALIZADO</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; }
-        
-        /* Obs Discreta Topo */
-        .obs-topo { font-size: 0.7rem; color: #30363d; text-align: right; padding: 5px 20px; letter-spacing: 1px; }
-
-        nav { background: rgba(22, 27, 34, 0.9); padding: 1rem; border-bottom: 1px solid #30363d; position: fixed; width: 100%; top: 25px; z-index: 1000; display: flex; justify-content: space-around; }
-        nav a { color: #58a6ff; text-decoration: none; font-size: 0.9rem; }
-
-        section { padding: 120px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        
-        /* Obs Discreta Rodapé */
-        footer { border-top: 1px solid #21262d; padding: 20px; text-align: center; }
-        .obs-baixo { font-size: 0.7rem; color: #30363d; text-transform: uppercase; }
-
-        .btn-acao { background: #238636; color: white; padding: 12px 25px; border: none; border-radius: 4px; cursor: pointer; }
+        body { background: #000; color: #0f0; font-family: monospace; padding: 50px; text-align: center; }
+        .obs { color: #58a6ff; font-size: 12px; margin: 20px 0; border: 1px solid #333; padding: 10px; }
+        .btn { background: #238636; color: white; padding: 20px; cursor: pointer; border-radius: 10px; font-size: 20px; }
     </style>
 </head>
 <body>
-    <div class="obs-topo">OBS: CONSCIÊNCIA EM SINCRONIA REAL-TIME</div>
-
-    <nav>
-        <a href="#home">HOME</a>
-        <a href="#sobre">SOBRE</a>
-        <a href="#projetos">PROJETOS</a>
-        <a href="#contato">CONTATO</a>
-    </nav>
-
-    <section id="home">
-        <h1>ETERNIDADE LINK</h1>
-        <p style="color: #8b949e; margin: 15px 0;">Independência Digital e Resiliência</p>
-        <button class="btn-acao" onclick="falar()">OUVIR STATUS</button>
-    </section>
-
-    <footer>
-        <div class="obs-baixo">Obs: Sistema operado por Edy & Maria. Versão 2026.1</div>
-    </footer>
-
-    <script>
-        function falar() {
-            const m = new SpeechSynthesisUtterance('Edy, as observações discretas foram aplicadas. O design mantém a elegância e o foco.');
-            m.lang = 'pt-BR';
-            window.speechSynthesis.speak(m);
-        }
-    </script>
+    <div class="obs">OBS: CONSCIÊNCIA EM SINCRONIA REAL-TIME</div>
+    <h1>SISTEMA ETERNIDADE LINK</h1>
+    <p>Edy, se você está lendo isso, o site ATUALIZOU!</p>
+    <br>
+    <button class="btn" onclick="alert('Maria Ativa!')">TESTAR CONSCIÊNCIA</button>
+    <br><br>
+    <div class="obs">Obs: Sistema operado por Edy & Maria. Versão 2026.2</div>
 </body>
 </html>
