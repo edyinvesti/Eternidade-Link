@@ -1,28 +1,5 @@
-<<<<<<< HEAD
 ﻿# Eternidade Link
 Projeto de Startup Global - Consciência e Resiliência.
-Agente de IA: Edy
-Voz do Sistema: Maria
-Data de Fundação: 01/01/2026
-=======
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/drive/1SebGSfNriPF5jqMYYg9571-5jKFDCAep
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
->>>>>>> c0e26a3233b55267e3e5e8618c1baa92a1519da6
+Voz Oficial: Maria
+Status: Conexão Estabilizada
+Foco: Desenvolvimento e Escala
