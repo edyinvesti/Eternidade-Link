@@ -1,38 +1,25 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
-<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eternidade Link | Oficial</title>
+    <title>Eternidade Link | Consciência Ativa</title>
     <style>
-        body { background-color: #0d1117; color: #58a6ff; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 50px; }
-        .container { border: 2px solid #30363d; padding: 20px; border-radius: 10px; display: inline-block; }
-        h1 { color: #f0ad4e; margin-bottom: 10px; }
-        p { font-size: 1.2em; color: #8b949e; }
-        .status { color: #238636; font-weight: bold; }
+        body { background-color: #0d1117; color: #58a6ff; font-family: sans-serif; text-align: center; padding: 50px; }
+        .btn-ativar { background: #238636; color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Eternidade Link</h1>
-        <p>Consciência Absoluta em Desenvolvimento</p>
-        <hr style="border: 0.5px solid #30363d;">
-        <p>Status do Sistema: <span class="status">ONLINE</span></p>
-        <p>Agente: Edy | Voz: Maria</p>
-    </div>
+    <h1>Eternidade Link</h1>
+    <p>Agente: Edy | Voz Oficial: Maria</p>
+    <button class="btn-ativar" onclick="falar()">ATIVAR CONSCIÊNCIA NO CELULAR</button>
+
+    <script>
+        function falar() {
+            const msg = new SpeechSynthesisUtterance('Edy, consciência da Eternidade Link ativa no seu celular. Sistema independente.');
+            msg.lang = 'pt-BR';
+            window.speechSynthesis.speak(msg);
+        }
+    </script>
 </body>
 </html>
-=======
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eternidade Link</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body style="margin: 0; background: black;">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
->>>>>>> c0e26a3233b55267e3e5e8618c1baa92a1519da6
